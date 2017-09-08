@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bookshelf": "^0.10.4",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
