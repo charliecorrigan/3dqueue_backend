@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "knex": "^0.13.0",
     "passport": "^0.4.0",
     "passport-dropbox-oauth2": "^1.1.0",
