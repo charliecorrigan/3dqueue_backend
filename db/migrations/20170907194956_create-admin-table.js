@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   let createQuery = `CREATE TABLE admins(
     id SERIAL PRIMARY KEY NOT NULL,
