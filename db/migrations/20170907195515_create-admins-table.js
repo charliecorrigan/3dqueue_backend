@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   let createQuery = `CREATE TABLE admins(
     id SERIAL PRIMARY KEY NOT NULL,
@@ -9,6 +8,6 @@ exports.up = function(knex, Promise) {
 }
 
 exports.down = function(knex, Promise) {
-  let dropQuery = `DROP TABLE admin`
+  let dropQuery = `DROP TABLE admins`
   return knex.raw(dropQuery)
 }
