@@ -58,7 +58,7 @@ module.exports = function(passport) {
         //     console.log("This username is taken")
         //   }
         // })
-        User.findOne({ 'local.username' :  username }, function(err, user) {
+        Admin.findOne({ 'local.username' :  username }, function(err, user) {
             console.log("I guess we're not going to use knex. Cause we're using passport.")
             // if there are any errors, return the error
             if (err)
