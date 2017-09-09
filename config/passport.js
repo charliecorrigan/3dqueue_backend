@@ -1,5 +1,7 @@
 // load all the things we need
-
+const environment = process.env.NODE_ENV || "development"
+const configuration = require("../../knexfile")[environment]
+const database = require('knex')(configuration)
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
