@@ -7,7 +7,7 @@ var LocalStrategy   = require('passport-local').Strategy;
 var Admin            = require('../lib/models/admin');
 
 // expose this function to our app using module.exports
-module.exports = function(passport) {
+module.exports = function(app, passport) {
     app.use(cors())
     
     // =========================================================================
