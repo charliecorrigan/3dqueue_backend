@@ -3,6 +3,8 @@ const environment = process.env.NODE_ENV || "development"
 const configuration = require("../knexfile")[environment]
 const database = require('knex')(configuration)
 var LocalStrategy   = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // load up the user model
 var Admin            = require('../lib/models/admin');
@@ -79,7 +81,10 @@ module.exports = function(passport) {
                 
                 // set the user's local credentials
                 newUser.username    = username;
-                newUser.password = newUser.generateHash(password);
+                bcrypt.hash(password, saltRounds, function(err, hash) {
+                    newUser.password = hash;
+                  });
+                
 
                 // save the user
                 newUser.save(function(err) {
