@@ -51,6 +51,9 @@ module.exports = function(passport) {
         .then((data) => {
           if (data.rows < 1) {
             console.log("This user wasn't in the database")
+            console.log("Do we have access to a username and password?")
+            console.log(username)
+            console.log(password)
           } else {
             console.log("This username is taken")
           }
