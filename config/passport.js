@@ -51,14 +51,12 @@ module.exports = function(passport) {
         .then((data) => {
           if (data.rows < 1) {
             console.log("This user wasn't in the database")
-            console.log("Do we have access to a username and password?")
-            console.log(username)
-            console.log(password)
+            database.raw(`INSERT INTO admins (username, password, created_at)
+            VALUES  (?, ?, ?) RETURNING *`,
+            [username, password, new Date])
           } else {
             console.log("This username is taken")
           }
-          console.log("We're in the then statement")
-          console.log(data)
         })
         // Admin.findOne({ 'local.username' :  username }, function(err, user) {
         //     // if there are any errors, return the error
