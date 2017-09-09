@@ -33,12 +33,12 @@ module.exports = function(passport) {
 
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
+        usernameField : 'username',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, email, password, done) {
-
+    function(req, username, password, done) {
+        console.log("HOLY SHIT WE ARE FINALLY TROUBLESHOOTING PASSPORT")
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
