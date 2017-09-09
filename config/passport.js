@@ -47,44 +47,45 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        database.raw("SELECT * FROM admins WHERE username=(?)", [username])
-        .then((data) => {
-          if (data.rows < 1) {
-            console.log("This user wasn't in the database")
-            database.raw(`INSERT INTO admins (username, password, created_at)
-            VALUES  (?, ?, ?) RETURNING *`,
-            [username, password, new Date])
-          } else {
-            console.log("This username is taken")
-          }
-        })
-        // Admin.findOne({ 'local.username' :  username }, function(err, user) {
-        //     // if there are any errors, return the error
-        //     if (err)
-        //         return done(err);
+        // database.raw("SELECT * FROM admins WHERE username=(?)", [username])
+        // .then((data) => {
+        //   if (data.rows < 1) {
+        //     console.log("This user wasn't in the database")
+        //     database.raw(`INSERT INTO admins (username, password, created_at)
+        //     VALUES  (?, ?, ?) RETURNING *`,
+        //     [username, password, new Date])
+        //   } else {
+        //     console.log("This username is taken")
+        //   }
+        // })
+        User.findOne({ 'local.username' :  username }, function(err, user) {
+            console.log("I guess we're not going to use knex. Cause we're using passport.")
+            // if there are any errors, return the error
+            if (err)
+                return done(err);
 
-        //     // check to see if theres already a user with that email
-        //     if (user) {
-        //         return done(null, false);
-        //     } else {
+            // check to see if theres already a user with that email
+            if (user) {
+                return done(null, false);
+            } else {
 
-        //         // if there is no user with that email
-        //         // create the user
-        //         var newUser            = new Admin();
+                // if there is no user with that email
+                // create the user
+                var newUser            = new Admin();
 
-        //         // set the user's local credentials
-        //         newUser.local.username    = username;
-        //         newUser.local.password = newUser.generateHash(password);
+                // set the user's local credentials
+                newUser.local.username    = username;
+                newUser.local.password = newUser.generateHash(password);
 
-        //         // save the user
-        //         newUser.save(function(err) {
-        //             if (err)
-        //                 throw err;
-        //             return done(null, newUser);
-        //         });
-        //     }
+                // save the user
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, newUser);
+                });
+            }
 
-        // });    
+        });    
 
         });
 
