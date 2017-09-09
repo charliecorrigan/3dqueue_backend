@@ -49,7 +49,8 @@ module.exports = function(passport) {
         // we are checking to see if the user trying to login already exists
         database.raw("SELECT * FROM admins WHERE username=(?)", [username])
         .then((data) => {
-          
+          console.log("We're in the then statement")
+          console.log(data)
         })
         // Admin.findOne({ 'local.username' :  username }, function(err, user) {
         //     // if there are any errors, return the error
