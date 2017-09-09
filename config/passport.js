@@ -49,6 +49,11 @@ module.exports = function(passport) {
         // we are checking to see if the user trying to login already exists
         database.raw("SELECT * FROM admins WHERE username=(?)", [username])
         .then((data) => {
+          if (data.rows < 1) {
+            console.log("This user wasn't in the database")
+          } else {
+            console.log("This username is taken")
+          }
           console.log("We're in the then statement")
           console.log(data)
         })
