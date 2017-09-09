@@ -81,9 +81,9 @@ module.exports = function(passport) {
                 
                 // set the user's local credentials
                 newUser.username    = username;
-                bcrypt.hash(password, saltRounds, function(err, hash) {
-                    newUser.password = hash;
-                  });
+                var hash = bcrypt.hashSync(password, saltRounds);
+                newUser.password = hash;
+                  
                 
 
                 // save the user
