@@ -1,4 +1,6 @@
 // load all the things we need
+const cors = require('cors')
+
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
@@ -6,7 +8,8 @@ var Admin            = require('../lib/models/admin');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
-
+    app.use(cors())
+    
     // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
