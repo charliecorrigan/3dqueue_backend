@@ -27,16 +27,20 @@ module.exports = function(passport) {
         process.nextTick(function() {
             Admin.findOne({ 'local.username' :  username }, function(err, user) {
                 if (err)
+                    console.log("Here at passport.js line 30")
                     return done(err);
                 if (user) {
+                    console.log("Here at passport.js line 33")
                     return done(null, false);
                 } else {
+                    console.log("Here at passport.js line 36")
                     const newUser            = new Admin();
                     newUser.username    = username;
                     const hash = bcrypt.hashSync(password, saltRounds);
                     newUser.password = hash;
                     newUser.save(function(err) {
                         if (err)
+                            console.log("Here at passport.js line 43")
                             throw err;
                         return done(null, newUser);
                     });
